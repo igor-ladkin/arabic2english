@@ -69,15 +69,6 @@ class NumberInWords
 
     word_presentation = append_hundreds(word_presentation, digits)
     word_presentation = append_tens_and_ones(word_presentation, digits)
-    # word_presentation += NUMBER_PRIMITIVES[digits[2]] + ' hundred ' unless digits[2].nil? || digits[2] == 0
-
-    # tens = digits[1] * 10 + digits[0]
-    # if NUMBER_PRIMITIVES.has_key?(tens) && tens != 0
-    #   return word_presentation + NUMBER_PRIMITIVES[digits[1] * 10 + digits[0]]
-    # end
-
-    # word_presentation += NUMBER_PRIMITIVES[digits[1] * 10] + '-' unless digits[1] == 0
-    # word_presentation += NUMBER_PRIMITIVES[digits[0]] unless digits[0] == 0
     
     word_presentation.strip
   end
