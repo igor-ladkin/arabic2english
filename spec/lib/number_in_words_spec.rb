@@ -2,6 +2,12 @@ require 'spec_helper'
 require 'number_in_words'
 
 RSpec.describe NumberInWords do
+  describe '#initialize method' do
+    it "raises ArgumentError for '123XIV'" do
+      expect { NumberInWords.new '123XIV' }.to raise_error ArgumentError
+    end
+  end
+
   describe '#in_words method' do
     context 'for primitive numbers' do
       it 'returns one for 1' do
@@ -92,6 +98,11 @@ RSpec.describe NumberInWords do
         number = NumberInWords.new 9000000009
         expect(number.in_words).to_not include('thousand')
         expect(number.in_words).to_not include('million')
+      end
+
+      it 'raises UnableToConvert exception for 10000000000000000' do
+        number = NumberInWords.new 10000000000000000
+        expect { number.in_words }.to raise_error UnableToConvertError
       end
     end
   end

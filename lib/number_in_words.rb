@@ -23,6 +23,7 @@ class NumberInWords
   attr_reader :value
 
   def initialize(number)
+    raise ArgumentError unless number.is_a? Fixnum
     @value = number
   end
 
@@ -33,6 +34,7 @@ class NumberInWords
   private
 
   def translate_to_words
+    raise UnableToConvertError if value.to_s.length > 15
     return NUMBER_PRIMITIVES[@value] if NUMBER_PRIMITIVES.has_key? @value
 
     word_presentation = ''
@@ -77,3 +79,5 @@ class NumberInWords
     word_presentation
   end
 end
+
+class UnableToConvertError < StandardError ; end
