@@ -29,6 +29,11 @@ RSpec.describe NumberInWords do
         number = NumberInWords.new 50
         expect(number.in_words).to eq 'fifty'
       end
+
+      it 'does not contain zero for 300' do
+        number = NumberInWords.new 300
+        expect(number.in_words).to_not include('zero')
+      end
     end
 
     context 'for simple compound numbers (only hundreds, tens and ones)' do
@@ -82,6 +87,11 @@ RSpec.describe NumberInWords do
       it 'returns eight billion one hundred twenty-three for 8000000123' do
         number = NumberInWords.new 8000000123
         expect(number.in_words).to eq 'eight billion one hundred twenty-three'
+      end
+
+      it 'returns one hundred thousand five hundred for 100500' do
+        number = NumberInWords.new 100500
+        expect(number.in_words).to eq 'one hundred thousand five hundred'
       end
 
       it 'does not contain thousands for 12000050' do
