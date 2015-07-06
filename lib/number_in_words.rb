@@ -19,6 +19,22 @@ class NumberInWords
   end
 
   def in_words
-    @in_words ||= NUMBER_PRIMITIVES.fetch(@value)
+    @in_words ||= translate_to_words
+  end
+
+  private
+
+  def translate_to_words
+    return NUMBER_PRIMITIVES[@value] if NUMBER_PRIMITIVES.has_key? @value
+
+    digits = value.to_s.split('').reverse.map(&:to_i)
+    word_presentation = ''
+    word_presentation = NUMBER_PRIMITIVES[digits[0]] unless digits[0] == 0
+    word_presentation = NUMBER_PRIMITIVES[digits[1] * 10] + "-#{word_presentation}" unless digits[1] == 0
+    word_presentation = NUMBER_PRIMITIVES[digits[2]] + " hundred " + word_presentation unless digits[2].nil? || digits[2] == 0
+    
+    word_presentation
   end
 end
+
+# puts NumberInWords.new(21).in_words
