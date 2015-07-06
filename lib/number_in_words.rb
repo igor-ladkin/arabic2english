@@ -64,11 +64,34 @@ class NumberInWords
   def convert_multiplier_to_words(multiplier)
     return NUMBER_PRIMITIVES[multiplier] if NUMBER_PRIMITIVES.has_key? multiplier
 
-    digits = multiplier.to_s.split('').reverse.map(&:to_i)
+    digits = split_multiplier_into_digits(multiplier)
     word_presentation = ''
 
-    word_presentation = NUMBER_PRIMITIVES[digits[2]] + ' hundred ' unless digits[2].nil? || digits[2] == 0
+    word_presentation = append_hundreds(word_presentation, digits)
+    word_presentation = append_tens_and_ones(word_presentation, digits)
+    # word_presentation += NUMBER_PRIMITIVES[digits[2]] + ' hundred ' unless digits[2].nil? || digits[2] == 0
 
+    # tens = digits[1] * 10 + digits[0]
+    # if NUMBER_PRIMITIVES.has_key?(tens) && tens != 0
+    #   return word_presentation + NUMBER_PRIMITIVES[digits[1] * 10 + digits[0]]
+    # end
+
+    # word_presentation += NUMBER_PRIMITIVES[digits[1] * 10] + '-' unless digits[1] == 0
+    # word_presentation += NUMBER_PRIMITIVES[digits[0]] unless digits[0] == 0
+    
+    word_presentation.strip
+  end
+
+  def split_multiplier_into_digits(multiplier)
+    multiplier.to_s.split('').reverse.map(&:to_i)
+  end
+
+  def append_hundreds(word_presentation, digits)
+    word_presentation += NUMBER_PRIMITIVES[digits[2]] + ' hundred ' unless digits[2].nil? || digits[2] == 0
+    word_presentation
+  end
+
+  def append_tens_and_ones(word_presentation, digits)
     tens = digits[1] * 10 + digits[0]
     if NUMBER_PRIMITIVES.has_key?(tens) && tens != 0
       return word_presentation + NUMBER_PRIMITIVES[digits[1] * 10 + digits[0]]
@@ -76,8 +99,8 @@ class NumberInWords
 
     word_presentation += NUMBER_PRIMITIVES[digits[1] * 10] + '-' unless digits[1] == 0
     word_presentation += NUMBER_PRIMITIVES[digits[0]] unless digits[0] == 0
-    
-    word_presentation.strip
+
+    word_presentation
   end
 end
 
