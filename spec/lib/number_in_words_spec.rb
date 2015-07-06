@@ -56,5 +56,43 @@ RSpec.describe NumberInWords do
         expect(number.in_words).to_not include('ty-')
       end
     end
+
+    context 'for complex compound number (with thousands, millions, billions etc.)' do
+      it 'returns three hundred fifty-one thousand twelve for 351012' do
+        number = NumberInWords.new 351012
+        expect(number.in_words).to eq 'three hundred fifty-one thousand twelve'
+      end
+
+      it 'returns thirty million fifty-one thousand twelve for 30051012' do
+        number = NumberInWords.new 30051012
+        expect(number.in_words).to eq 'thirty million fifty-one thousand twelve'
+      end
+
+      it 'returns twenty-one million six hundred eighty thousand thirteen for 21680013' do
+        number = NumberInWords.new 21680013
+        expect(number.in_words).to eq 'twenty-one million six hundred eighty thousand thirteen'
+      end
+
+      it 'returns eight billion one hundred twenty-three for 8000000123' do
+        number = NumberInWords.new 8000000123
+        expect(number.in_words).to eq 'eight billion one hundred twenty-three'
+      end
+
+      it 'does not contain thousands for 12000050' do
+        number = NumberInWords.new 12000050
+        expect(number.in_words).to_not include('thousand')
+      end
+
+      it 'does not contain millions for 12000777050' do
+        number = NumberInWords.new 12000777050
+        expect(number.in_words).to_not include('million')
+      end
+
+      it 'does not contain millions or thousands for 9000000009' do
+        number = NumberInWords.new 9000000009
+        expect(number.in_words).to_not include('thousand')
+        expect(number.in_words).to_not include('million')
+      end
+    end
   end
 end
