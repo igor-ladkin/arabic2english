@@ -69,15 +69,47 @@ class NumberInWords
 
     word_presentation = NUMBER_PRIMITIVES[digits[2]] + ' hundred ' unless digits[2].nil? || digits[2] == 0
 
-    if NUMBER_PRIMITIVES.has_key?(digits[1] * 10 + digits[0])
+    tens = digits[1] * 10 + digits[0]
+    if NUMBER_PRIMITIVES.has_key?(tens) && tens != 0
       return word_presentation + NUMBER_PRIMITIVES[digits[1] * 10 + digits[0]]
     end
 
     word_presentation += NUMBER_PRIMITIVES[digits[1] * 10] + '-' unless digits[1] == 0
     word_presentation += NUMBER_PRIMITIVES[digits[0]] unless digits[0] == 0
     
-    word_presentation
+    word_presentation.strip
   end
 end
 
 class UnableToConvertError < StandardError ; end
+
+if __FILE__ == $0
+  if !ARGV.empty?
+    ARGV.each do |agrument|
+      begin
+        number = NumberInWords.new(Integer agrument)
+        puts number.in_words
+      rescue ArgumentError, UnableToConvertError
+        puts 'Seems like you are trying to convert a really big number or not a number at all. Please check your input.'
+      end 
+    end
+  else
+    loop do
+      puts 'Please enter a number you would like to convert to words: '
+      agrument = gets.strip
+
+      if agrument == 'exit'
+        puts 'I am glad to help. See you next time 8-)'
+        break
+      end
+
+      begin
+        number = NumberInWords.new(Integer agrument)
+        puts number.in_words
+        puts '-' * 80
+      rescue ArgumentError, UnableToConvertError
+        puts 'Seems like you are trying to convert a really big number or not a number at all. Please check your input.'
+      end 
+    end
+  end
+end
