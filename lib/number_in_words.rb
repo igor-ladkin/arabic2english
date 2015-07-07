@@ -132,10 +132,11 @@ if __FILE__ == $0
       begin
         number = NumberInWords.new(Integer agrument)
         puts number
-        puts '-' * 80
       rescue ArgumentError, UnableToConvertError
         puts 'Seems like you are trying to convert a really big number or not a nonnegative integer number at all. Please check your input.'
-      end 
+      end
+
+      puts '-' * 80
     end
   end
 end
