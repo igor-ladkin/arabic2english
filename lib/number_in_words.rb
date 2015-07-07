@@ -116,7 +116,7 @@ if __FILE__ == $0
         number = NumberInWords.new(Integer agrument)
         puts number
       rescue ArgumentError, UnableToConvertError
-        puts 'Seems like you are trying to convert a really big number or not a nonnegative number at all. Please check your input.'
+        puts 'Seems like you are trying to convert a really big number or not a nonnegative integer number at all. Please check your input.'
       end 
     end
   else
@@ -134,7 +134,7 @@ if __FILE__ == $0
         puts number
         puts '-' * 80
       rescue ArgumentError, UnableToConvertError
-        puts 'Seems like you are trying to convert a really big number or not a nonnegative number at all. Please check your input.'
+        puts 'Seems like you are trying to convert a really big number or not a nonnegative integer number at all. Please check your input.'
       end 
     end
   end

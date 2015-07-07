@@ -23,12 +23,12 @@ RSpec.describe NumberInWords do
         expect(number.in_words).to eq 'twelve'
       end
 
-      it 'returns one for 17' do
+      it 'returns seventeen for 17' do
         number = NumberInWords.new 17
         expect(number.in_words).to eq 'seventeen'
       end
 
-      it 'returns one for 50' do
+      it 'returns fifty for 50' do
         number = NumberInWords.new 50
         expect(number.in_words).to eq 'fifty'
       end
