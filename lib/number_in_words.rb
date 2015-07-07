@@ -94,9 +94,9 @@ class NumberInWords
   end
 
   def append_tens_and_ones(word_presentation, digits)
-    tens = digits[1] * 10 + digits[0]
-    if NUMBER_PRIMITIVES.has_key?(tens) && tens != 0
-      return word_presentation + NUMBER_PRIMITIVES[digits[1] * 10 + digits[0]]
+    tens_with_ones = digits[1] * 10 + digits[0]
+    if NUMBER_PRIMITIVES.has_key?(tens_with_ones) && tens_with_ones != 0
+      return word_presentation + NUMBER_PRIMITIVES[tens_with_ones]
     end
 
     word_presentation += NUMBER_PRIMITIVES[digits[1] * 10] + '-' unless digits[1] == 0
