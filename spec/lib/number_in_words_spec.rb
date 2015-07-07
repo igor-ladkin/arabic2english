@@ -32,11 +32,6 @@ RSpec.describe NumberInWords do
         number = NumberInWords.new 50
         expect(number.in_words).to eq 'fifty'
       end
-
-      it 'does not contain zero for 300' do
-        number = NumberInWords.new 300
-        expect(number.in_words).to_not include('zero')
-      end
     end
 
     context 'for simple compound numbers (only hundreds, tens and ones)' do
@@ -68,6 +63,11 @@ RSpec.describe NumberInWords do
       it 'does not contain tens for 909' do
         number = NumberInWords.new 909
         expect(number.in_words).to_not include('ty-')
+      end
+
+      it 'does not contain zero for 300' do
+        number = NumberInWords.new 300
+        expect(number.in_words).to_not include('zero')
       end
     end
 
