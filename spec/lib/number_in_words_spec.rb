@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'number_in_words'
 
 RSpec.describe NumberInWords do
   describe '#initialize method' do
