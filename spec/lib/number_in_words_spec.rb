@@ -5,6 +5,10 @@ RSpec.describe NumberInWords do
     it "raises ArgumentError for '123XIV'" do
       expect { NumberInWords.new '123XIV' }.to raise_error ArgumentError
     end
+
+    it 'raises ArgumentError for -10' do
+      expect { NumberInWords.new -10 }.to raise_error ArgumentError
+    end
   end
 
   describe '#in_words method' do

@@ -23,7 +23,7 @@ class NumberInWords
   attr_reader :value
 
   def initialize(number)
-    raise ArgumentError unless number.is_a? Fixnum
+    raise ArgumentError if (!number.is_a?(Fixnum) || number.to_i < 0)
     @value = number
   end
 
@@ -46,7 +46,7 @@ class NumberInWords
 
   def translate_to_words
     raise UnableToConvertError if value.to_s.length > 15
-    return NUMBER_PRIMITIVES[@value] if NUMBER_PRIMITIVES.has_key? @value
+    return NUMBER_PRIMITIVES[value] if NUMBER_PRIMITIVES.has_key? value
 
     word_presentation = ''
     
@@ -90,6 +90,7 @@ class NumberInWords
 
   def append_hundreds(word_presentation, digits)
     word_presentation += NUMBER_PRIMITIVES[digits[2]] + ' hundred ' unless digits[2].nil? || digits[2] == 0
+    
     word_presentation
   end
 
@@ -115,12 +116,12 @@ if __FILE__ == $0
         number = NumberInWords.new(Integer agrument)
         puts number
       rescue ArgumentError, UnableToConvertError
-        puts 'Seems like you are trying to convert a really big number or not a number at all. Please check your input.'
+        puts 'Seems like you are trying to convert a really big number or not a nonnegative number at all. Please check your input.'
       end 
     end
   else
     loop do
-      puts 'Please enter a number you would like to convert to words: '
+      puts 'Please enter a nonnegative number you would like to convert to words: '
       agrument = gets.strip
 
       if agrument == 'exit'
@@ -133,7 +134,7 @@ if __FILE__ == $0
         puts number
         puts '-' * 80
       rescue ArgumentError, UnableToConvertError
-        puts 'Seems like you are trying to convert a really big number or not a number at all. Please check your input.'
+        puts 'Seems like you are trying to convert a really big number or not a nonnegative number at all. Please check your input.'
       end 
     end
   end

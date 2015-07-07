@@ -1,6 +1,6 @@
 ##Arabic to English
 
-This simple Ruby class helps you translate numeric number presentation into english words.
+This simple Ruby class helps you translate numeric presentation of nonnegative integer number into english words.
 
 ####Usage
 
