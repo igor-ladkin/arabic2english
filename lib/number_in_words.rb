@@ -31,6 +31,17 @@ class NumberInWords
     @in_words ||= translate_to_words
   end
 
+  def to_s
+    in_words
+  end
+
+  def inspect
+    {
+      value: value,
+      in_words: in_words
+    }
+  end
+
   private
 
   def translate_to_words
@@ -102,7 +113,7 @@ if __FILE__ == $0
     ARGV.each do |agrument|
       begin
         number = NumberInWords.new(Integer agrument)
-        puts number.in_words
+        puts number
       rescue ArgumentError, UnableToConvertError
         puts 'Seems like you are trying to convert a really big number or not a number at all. Please check your input.'
       end 
@@ -119,7 +130,7 @@ if __FILE__ == $0
 
       begin
         number = NumberInWords.new(Integer agrument)
-        puts number.in_words
+        puts number
         puts '-' * 80
       rescue ArgumentError, UnableToConvertError
         puts 'Seems like you are trying to convert a really big number or not a number at all. Please check your input.'

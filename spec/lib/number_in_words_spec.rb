@@ -116,4 +116,20 @@ RSpec.describe NumberInWords do
       end
     end
   end
+
+  describe '#to_s method' do
+    it 'returns the result of in_words method call' do
+      number = NumberInWords.new 100
+      expect(number).to receive(:in_words).once
+      number.to_s
+    end
+  end
+
+  describe '#inspect method' do
+    it 'returns a hash with value and in_words keys and values accordingly' do
+      number = NumberInWords.new 456
+      expect(number.inspect[:value]).to eq 456
+      expect(number.inspect[:in_words]).to eq 'four hundred fifty-six'
+    end
+  end
 end
