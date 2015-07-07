@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/thrasherDGK/arabic2english/badges/gpa.svg)](https://codeclimate.com/github/thrasherDGK/arabic2english)
+
 ##Arabic to English
 
 This simple Ruby class helps you translate numeric presentation of nonnegative integer number into english words.
