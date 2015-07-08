@@ -45,7 +45,7 @@ class NumberInWords
   private
 
   def translate_to_words
-    raise UnableToConvertError if value.to_s.length > 15
+    raise UnableToConvertError if value.to_s.length > POWER_RANKS.size * 3
     return NUMBER_PRIMITIVES[value] if NUMBER_PRIMITIVES.has_key? value
 
     word_presentation = ''
