@@ -17,7 +17,7 @@ class NumberInWords
     1 => ' thousand ',
     2 => ' million ',
     3 => ' billion ',
-    4 => ' trillion '
+    4 => ' trillion ',
   }
 
   attr_reader :value
@@ -44,8 +44,12 @@ class NumberInWords
 
   private
 
+  def max_allowed_number_length
+    POWER_RANKS.size * 3
+  end
+
   def translate_to_words
-    raise UnableToConvertError if value.to_s.length > POWER_RANKS.size * 3
+    raise UnableToConvertError if value.to_s.length > max_allowed_number_length
     return NUMBER_PRIMITIVES[value] if NUMBER_PRIMITIVES.has_key? value
 
     word_presentation = ''
